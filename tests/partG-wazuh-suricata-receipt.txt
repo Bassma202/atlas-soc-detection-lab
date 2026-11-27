@@ -1,0 +1,6 @@
+Matched 3 alerts (from last 289 total)
+2026-11-27T01:30:03.606+0000 | agent=ATLAS-SRV | rule=86601 (lvl 3) | ev= | user= | desc=Suricata: Alert - ATLAS LAB portal TCP test
+2026-11-27T01:30:03.615+0000 | agent=ATLAS-SRV | rule=86601 (lvl 3) | ev= | user= | desc=Suricata: Alert - ATLAS LAB portal TCP test
+2026-11-27T01:30:03.615+0000 | agent=ATLAS-SRV | rule=86601 (lvl 3) | ev= | user= | desc=Suricata: Alert - ATLAS LAB portal TCP test
+Wrote JSON: $HOME/Atlas-SOC-Lab/evidence/wazuh-alerts/ATLAS-SRV_suricata_alerts.json
+Wrote CSV: $HOME/Atlas-SOC-Lab/evidence/wazuh-alerts/ATLAS-SRV_suricata_alerts.csv

@@ -1,0 +1,22 @@
+=== Step 1: Launch Npcap 1.90 Interactive Installer in Session 1 ===
+=== Npcap UIA Log ===
+=== Npcap 1.90 Interactive Session 1 Installer (Exact Button Match) ===
+Step 60 : Clicked button 'Install'
+Step 61 : Clicked button 'Install'
+Attached to running npcap-1.90.exe PID=4012
+Step 0 : Clicked exact button 'Install (id=1)'
+Service status:
+
+wpcap.dll exists: True
+=== Step 2: Verify Npcap Service & DLL ===
+wpcap.dll present: True
+=== Step 3: Verify Suricata 8.0.8 -V and -T ===
+Suricata -V ExitCode: 0
+Info: win32-service: Running as service: no
+This is Suricata version 8.0.8 RELEASE
+Suricata -T ExitCode: 0
+Info: win32-service: Running as service: no
+i: suricata: This is Suricata version 8.0.8 RELEASE running in SYSTEM mode
+i: runmodes: thread stack size of 0 too small: setting to 512k
+W: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+i: suricata: Configuration provided was successfully loaded. Exiting.

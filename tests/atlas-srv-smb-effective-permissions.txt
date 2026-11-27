@@ -1,0 +1,10 @@
+--- Test 1: ATLAS\k.amrani (member of AtlasStaff -> expect Read + Write ALLOWED) ---
+The command completed successfully.
+
+Payroll demo - fictional data only
+k.amrani write exists: True
+--- Test 2: ATLAS\svc_backup (Domain Users only -> expect Read ALLOWED, Write DENIED) ---
+The command completed successfully.
+
+Payroll demo - fictional data only
+EXPECTED ACCESS DENIED for svc_backup write: Access to the path 'T:\svc_backup_test.txt' is denied.

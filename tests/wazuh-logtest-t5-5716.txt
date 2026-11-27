@@ -1,0 +1,76 @@
+=== WAZUH-ARM ISOLATED NETWORK CHECK ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth-atlas        UP             10.10.20.100/24 fde9:50b5:26fb:2b67:5054:ff:fe10:2064/64 fe80::5054:ff:fe10:2064/64 
+eth-nat          DOWN           
+10.10.20.0/24 dev eth-atlas proto kernel scope link src 10.10.20.100 
+=== WAZUH-LOGTEST T5 (SSHD DECODER -> RULE 5716) ===
+Starting wazuh-logtest v4.14.11
+Type one log per line
+
+
+**Phase 1: Completed pre-decoding.
+	full event: 'Nov 26 15:00:00 wazuh-arm sshd[12345]: Failed password for svc_backup from 10.10.20.1 port 54321 ssh2'
+	timestamp: 'Nov 26 15:00:00'
+	hostname: 'wazuh-arm'
+	program_name: 'sshd'
+
+**Phase 2: Completed decoding.
+	name: 'sshd'
+	parent: 'sshd'
+	dstuser: 'svc_backup'
+	srcip: '10.10.20.1'
+	srcport: '54321'
+
+**Phase 3: Completed filtering (rules).
+	id: '5760'
+	level: '5'
+	description: 'sshd: authentication failed.'
+	groups: '['syslog', 'sshd', 'authentication_failed']'
+	firedtimes: '1'
+	gdpr: '['IV_35.7.d', 'IV_32.2']'
+	gpg13: '['7.1']'
+	hipaa: '['164.312.b']'
+	mail: 'False'
+	mitre.id: '['T1110.001', 'T1021.004']'
+	mitre.tactic: '['Credential Access', 'Lateral Movement']'
+	mitre.technique: '['Password Guessing', 'SSH']'
+	nist_800_53: '['AU.14', 'AC.7']'
+	pci_dss: '['10.2.4', '10.2.5']'
+	tsc: '['CC6.1', 'CC6.8', 'CC7.2', 'CC7.3']'
+**Alert to be generated.
+
+Starting wazuh-logtest v4.14.11
+Type one log per line
+
+
+**Phase 1: Completed pre-decoding.
+	full event: 'Nov 26 15:00:00 wazuh-arm sshd[12345]: Failed none for svc_backup from 10.10.20.1 port 54321 ssh2'
+	timestamp: 'Nov 26 15:00:00'
+	hostname: 'wazuh-arm'
+	program_name: 'sshd'
+
+**Phase 2: Completed decoding.
+	name: 'sshd'
+	parent: 'sshd'
+	dstuser: 'svc_backup'
+	srcip: '10.10.20.1'
+	srcport: '54321'
+
+**Phase 3: Completed filtering (rules).
+	id: '5716'
+	level: '5'
+	description: 'sshd: authentication failed.'
+	groups: '['syslog', 'sshd', 'authentication_failed']'
+	firedtimes: '1'
+	gdpr: '['IV_35.7.d', 'IV_32.2']'
+	gpg13: '['7.1']'
+	hipaa: '['164.312.b']'
+	mail: 'False'
+	mitre.id: '['T1110']'
+	mitre.tactic: '['Credential Access']'
+	mitre.technique: '['Brute Force']'
+	nist_800_53: '['AU.14', 'AC.7']'
+	pci_dss: '['10.2.4', '10.2.5']'
+	tsc: '['CC6.1', 'CC6.8', 'CC7.2', 'CC7.3']'
+**Alert to be generated.
+

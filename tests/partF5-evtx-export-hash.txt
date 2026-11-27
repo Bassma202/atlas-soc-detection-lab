@@ -1,0 +1,8 @@
+
+
+Algorithm : SHA256
+Hash      : F636527FA29353C8B3D62E22871CA51DA17861B3B538DBBC618B04A7658EFDB0
+Path      : C:\AtlasEvidence\ATLAS-SRV_Security.evtx
+
+
+

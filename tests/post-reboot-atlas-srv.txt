@@ -1,0 +1,172 @@
+==================================================================
+POST-REBOOT ACCEPTANCE VALIDATION - ATLAS-SRV (2026-11-27 02:20:01 UTC)
+==================================================================
+
+--- 1. Computer Name (hostname) ---
+ATLAS-SRV
+
+--- 2. Network Configuration & Strict Isolation (Ethernet = 10.10.20.10, No GW; Ethernet 2 Disabled) ---
+
+Name       Status      MacAddress        InterfaceGuid                         
+----       ------      ----------        -------------                         
+Ethernet   Up          52-54-00-10-20-0A {1F0B75A5-C580-469C-80AD-97D9FE449A85}
+Ethernet 2 Not Present 52-54-00-10-20-F2 {0C563DE1-2E26-4F14-8C93-E9A32C3FFEF8}
+
+
+
+
+InterfaceAlias     : Ethernet
+IPv4Address        : {10.10.20.10}
+IPv4DefaultGateway : 
+DNSServer          : {MSFT_DNSClientServerAddress (Name = "4", CreationClassName = "", 
+                     SystemCreationClassName = "", SystemName = "23"), 
+                     MSFT_DNSClientServerAddress (Name = "4", CreationClassName = "", 
+                     SystemCreationClassName = "", SystemName = "2")}
+
+
+
+
+--- 3. Domain & DNS (nslookup must return ONLY 10.10.20.10) ---
+
+Name        RootDomain         ForestMode
+----        ----------         ----------
+atlas.local atlas.local Windows2025Forest
+
+
+DNS request timed out.
+    timeout was 2 seconds.
+Server:  UnKnown
+Address:  10.10.20.10
+
+Name:    ATLAS-SRV.atlas.local
+Address:  10.10.20.10
+
+
+Name                  Type IPAddress  
+----                  ---- ---------  
+ATLAS-SRV.atlas.local    A 10.10.20.10
+
+
+
+Name                             NameTarget            Port
+----                             ----------            ----
+_ldap._tcp.dc._msdcs.atlas.local atlas-srv.atlas.local  389
+atlas-srv.atlas.local                                      
+
+
+
+--- 4. Windows Evaluation Activation (slmgr /dlv) ---
+Software licensing service version: 10.0.26100.1742
+
+Name: Windows(R), ServerStandardEval edition
+Description: Windows(R) Operating System, TIMEBASED_EVAL channel
+Activation ID: 753c53a2-4274-4339-8c2e-f66c0b9646c5
+Application ID: 55c92734-d682-4d71-983e-d6ec3f16059f
+Extended PID: 03612-04932-000-000001-00-1033-26100.0000-3302026
+Product Key Channel: Retail:TB:Eval
+Installation ID: 098975519690662679086083929168944253867632483454295300305822165
+Use License URL: https://activation-v2.sls.microsoft.com/SLActivateProduct/SLActivateProduct.asmx?configextension=Retail
+Validation URL: https://validation-v2.sls.microsoft.com/SLWGA/slwga.asmx
+Partial Product Key: 7H9YG
+License Status: Licensed
+Timebased activation expiration: 258533 minute(s) (180 day(s))
+Remaining Windows rearm count: 1
+Remaining SKU rearm count: 1
+Trusted time: 11/27/2026 2:21:04 AM
+
+
+
+--- 5. Security Auditing (auditpol) ---
+System audit policy
+
+Category/Subcategory                      Setting
+System
+  Other System Events                     Success and Failure
+
+Logon/Logoff
+  Logoff                                  Success and Failure
+
+  Logon                                   Success and Failure
+
+Account Management
+  User Account Management                 Success and Failure
+
+Account Logon
+  Kerberos Authentication Service         Success and Failure
+
+
+--- 6. Staff Accounts & Least-Privilege SMB Share ---
+
+SamAccountName Enabled PasswordNeverExpires
+-------------- ------- --------------------
+k.amrani          True                     
+y.benali          True                     
+s.tahiri          True                     
+admin.it          True                     
+svc_backup        True                     
+
+
+
+Name  AccountName        AccessControlType AccessRight
+----  -----------        ----------------- -----------
+Staff ATLAS\AtlasStaff               Allow      Change
+Staff ATLAS\Domain Users             Allow        Read
+
+
+
+--- 7. Wazuh Ports (1515 & 1514) & Agent Service ---
+WARNING: TCP connect to (10.10.20.100 : 1515) failed
+WARNING: Ping to 10.10.20.100 failed with status: TimedOut
+
+ComputerName RemotePort SourceAddress TcpTestSucceeded
+------------ ---------- ------------- ----------------
+10.10.20.100       1515 10.10.20.10              False
+
+
+WARNING: TCP connect to (10.10.20.100 : 1514) failed
+WARNING: Ping to 10.10.20.100 failed with status: DestinationHostUnreachable
+
+ComputerName RemotePort SourceAddress TcpTestSucceeded
+------------ ---------- ------------- ----------------
+10.10.20.100       1514 10.10.20.10              False
+
+
+
+ Status Name     DisplayName
+ ------ ----     -----------
+Running WazuhSvc Wazuh      
+
+
+
+C:\Program Files (x86)\ossec-agent\wazuh-agent.state:7:status='pending'
+
+--- 8. Verify Temporary Provisioning Controls Disabled ---
+    AllowUnencrypted = false
+        Basic = false
+
+
+
+
+AutoAdminLogon  : 0
+DefaultPassword : 
+
+
+
+
+--- 9. Part G Components Present (IIS 8088 + Suricata 8.0.8 + Npcap) ---
+
+ Status Name  DisplayName                      
+ ------ ----  -----------                      
+Running npcap Npcap Packet Driver (NPCAP)      
+Running W3SVC World Wide Web Publishing Service
+
+
+
+protocol bindingInformation
+-------- ------------------
+http     *:80:             
+http     10.10.20.10:8088: 
+
+
+Info: win32-service: Running as service: no
+This is Suricata version 8.0.8 RELEASE

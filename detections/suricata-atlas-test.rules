@@ -1,0 +1,5 @@
+# Atlas SOC Lab - Part G2.3 Harmless Portal TCP Connectivity Test Signature (Manual p. 32)
+# Matches a TCP SYN from the host-only adapter (10.10.20.1) to ATLAS-SRV IIS portal (10.10.20.10:8088).
+# NOTE: macOS sets RFC 3168 ECN/CWR bits (0xC2) on outgoing SYN packets; flags:S,12 ignores ECN bits 1 & 2
+# while strictly matching SYN-only packets. This is a connectivity demonstration, NOT a port-scan detector.
+alert tcp 10.10.20.1 any -> 10.10.20.10 8088 (msg:"ATLAS LAB portal TCP test"; flow:to_server; flags:S,12; sid:1000001; rev:3;)

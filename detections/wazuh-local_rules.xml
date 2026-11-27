@@ -1,0 +1,13 @@
+<!-- Atlas SOC Lab - Custom Wazuh Rule 100100 (Appendix E, pp. 47-48) -->
+<!-- Detects Windows logon failure (rule 60122 / Event ID 4625) targeting service account svc_backup -->
+<group name="local,atlas_soc,windows,authentication_failed,">
+  <rule id="100100" level="10">
+    <if_sid>60122</if_sid>
+    <field name="win.eventdata.targetUserName">^svc_backup$</field>
+    <description>Atlas SOC: Windows failed logon targeting service account svc_backup</description>
+    <mitre>
+      <id>T1110</id>
+      <id>T1078</id>
+    </mitre>
+  </rule>
+</group>
