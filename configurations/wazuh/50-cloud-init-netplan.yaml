@@ -1,0 +1,10 @@
+network:
+  version: 2
+  ethernets:
+    eth-atlas:
+      match:
+        macaddress: "52:54:00:10:20:64"
+      set-name: eth-atlas
+      dhcp4: false
+      addresses:
+        - 10.10.20.100/24
