@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 470" width="1120" height="470" font-family="Helvetica Neue, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a5f"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="470" fill="#ffffff"/>
+  <rect x="20" y="16" width="1080" height="52" rx="8" fill="#0f2744"/>
+  <text x="40" y="41" fill="#ffffff" font-size="18" font-weight="700">Host Intrusion Detection Pipeline — Windows Security Events &amp; FIM to Wazuh SIEM</text>
+  <text x="40" y="58" fill="#cbd5e1" font-size="12">End-to-End Verified Telemetry Path: ATLAS-SRV (10.10.20.10)  →  WAZUH-ARM (10.10.20.100)  →  Forensic Evidence &amp; SOC Ticket</text>
+
+  <!-- Stage 1 -->
+  <rect x="24" y="92" width="236" height="250" rx="8" fill="#eff6ff" stroke="#1e3a5f" stroke-width="1.8"/>
+  <rect x="24" y="92" width="236" height="30" rx="8" fill="#1e3a5f"/>
+  <rect x="24" y="112" width="236" height="10" fill="#1e3a5f"/>
+  <text x="38" y="112" fill="#ffffff" font-size="12" font-weight="700">1. Event Sources (ATLAS-SRV)</text>
+  <text x="36" y="142" fill="#0f172a" font-size="11.5" font-weight="700">Windows Security Log:</text>
+  <text x="36" y="160" fill="#334155" font-size="11">• 4624 — Logon Success</text>
+  <text x="36" y="177" fill="#334155" font-size="11">• 4634 / 4647 — User Logoff</text>
+  <text x="36" y="194" fill="#b91c1c" font-size="11" font-weight="700">• 4625 — Logon Failure (Rec 2963, 2978)</text>
+  <text x="36" y="211" fill="#334155" font-size="11">• 4771 — Kerberos Pre-Auth Fail</text>
+  <text x="36" y="228" fill="#334155" font-size="11">• 4720 / 4728 — Account &amp; Group</text>
+  <line x1="36" y1="242" x2="246" y2="242" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="36" y="261" fill="#0f172a" font-size="11.5" font-weight="700">Realtime FIM (syscheck):</text>
+  <text x="36" y="279" fill="#334155" font-size="11">• C:\AtlasShare\payroll.txt</text>
+  <text x="36" y="296" fill="#334155" font-size="11">• Checksum &amp; change detection</text>
+  <text x="36" y="324" fill="#1e3a8a" font-size="10.5" font-weight="600">Audit Policy: Success &amp; Failure</text>
+
+  <!-- Stage 2 -->
+  <rect x="292" y="92" width="218" height="250" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.8"/>
+  <rect x="292" y="92" width="218" height="30" rx="8" fill="#334155"/>
+  <rect x="292" y="112" width="218" height="10" fill="#334155"/>
+  <text x="306" y="112" fill="#ffffff" font-size="12" font-weight="700">2. Wazuh Agent 001</text>
+  <text x="304" y="142" fill="#0f172a" font-size="11.5" font-weight="700">Service: WazuhSvc (Running)</text>
+  <text x="304" y="160" fill="#334155" font-size="11">• Version: v4.14.10 (MSI)</text>
+  <text x="304" y="177" fill="#334155" font-size="11">• State: status='connected'</text>
+  <text x="304" y="194" fill="#334155" font-size="11">• Collectors: EventChannel,</text>
+  <text x="314" y="210" fill="#334155" font-size="11">Syscheck Realtime, JSON</text>
+  <line x1="304" y1="226" x2="496" y2="226" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="304" y="246" fill="#0f2744" font-size="11.5" font-weight="700">Encrypted Transport:</text>
+  <text x="304" y="264" fill="#0f766e" font-size="11" font-weight="700">• TCP 1515 (Enrollment)</text>
+  <text x="304" y="282" fill="#0f766e" font-size="11" font-weight="700">• TCP 1514 (AES Events)</text>
+  <text x="304" y="302" fill="#475569" font-size="10.5">Src: 10.10.20.10</text>
+  <text x="304" y="318" fill="#475569" font-size="10.5">Dst: 10.10.20.100</text>
+
+  <!-- Stage 3 -->
+  <rect x="542" y="92" width="268" height="250" rx="8" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.8"/>
+  <rect x="542" y="92" width="268" height="30" rx="8" fill="#0f766e"/>
+  <rect x="542" y="112" width="268" height="10" fill="#0f766e"/>
+  <text x="556" y="112" fill="#ffffff" font-size="12" font-weight="700">3. Wazuh Manager v4.14.11</text>
+  <text x="554" y="142" fill="#0f172a" font-size="11.5" font-weight="700">wazuh-analysisd Rules Fired:</text>
+  <text x="554" y="160" fill="#334155" font-size="11">• Rule 60106 (lvl 3) — 4624 Success</text>
+  <text x="554" y="177" fill="#334155" font-size="11">• Rule 60137 (lvl 3) — 4634 Logoff</text>
+  <text x="554" y="194" fill="#b45309" font-size="11" font-weight="700">• Rule 60122 (lvl 5) — k.amrani 4625</text>
+  <text x="554" y="211" fill="#334155" font-size="11">• Rule 60104 (lvl 5) — Kerberos 4771</text>
+  <text x="554" y="228" fill="#334155" font-size="11">• Rule 60109 (lvl 8) / 60141 (lvl 5)</text>
+  <text x="554" y="245" fill="#0f766e" font-size="11" font-weight="700">• Rule 550 (lvl 7) — FIM Modified</text>
+  <rect x="554" y="258" width="244" height="44" rx="5" fill="#fef2f2" stroke="#dc2626"/>
+  <text x="564" y="275" fill="#991b1b" font-size="11" font-weight="700">Custom Rule 100100 (Level 10)</text>
+  <text x="564" y="291" fill="#7f1d1d" font-size="10.5">svc_backup 4625 (T1110, T1078)</text>
+  <text x="554" y="324" fill="#475569" font-size="10.5">Output: /var/ossec/logs/alerts/alerts.json</text>
+
+  <!-- Stage 4 -->
+  <rect x="842" y="92" width="254" height="250" rx="8" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+  <rect x="842" y="92" width="254" height="30" rx="8" fill="#1e3a5f"/>
+  <rect x="842" y="112" width="254" height="10" fill="#1e3a5f"/>
+  <text x="856" y="112" fill="#ffffff" font-size="12" font-weight="700">4. Indexer, Dashboard &amp; SOC</text>
+  <text x="854" y="142" fill="#0f172a" font-size="11.5" font-weight="700">Filebeat → Wazuh Indexer:</text>
+  <text x="854" y="160" fill="#334155" font-size="11">• OpenSearch HTTPS :9200</text>
+  <text x="854" y="177" fill="#334155" font-size="11">• Wazuh Dashboard HTTPS :443</text>
+  <text x="854" y="194" fill="#334155" font-size="11">• Threat Hunting DQL Queries</text>
+  <line x1="854" y1="210" x2="1082" y2="210" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="854" y="229" fill="#0f2744" font-size="11.5" font-weight="700">Forensic Preservation (Part F5):</text>
+  <text x="854" y="247" fill="#334155" font-size="11">• ATLAS-SRV_Security.evtx (3.1 MB)</text>
+  <text x="854" y="264" fill="#334155" font-size="11">• ATLAS-SRV_wazuh_alerts.json/csv</text>
+  <text x="854" y="281" fill="#334155" font-size="11">• Cross-verified SHA-256 hashes</text>
+  <text x="854" y="298" fill="#0f766e" font-size="11" font-weight="700">• Ticket ATLAS-001 (Table 9)</text>
+  <text x="854" y="324" fill="#64748b" font-size="10.5">Clock offset (~5.96s) documented</text>
+
+  <!-- Pipeline Arrows -->
+  <path d="M 260 217 L 290 217" stroke="#1e3a5f" stroke-width="2.2" fill="none" marker-end="url(#arr)"/>
+  <path d="M 510 217 L 540 217" stroke="#1e3a5f" stroke-width="2.2" fill="none" marker-end="url(#arr)"/>
+  <path d="M 810 217 L 840 217" stroke="#1e3a5f" stroke-width="2.2" fill="none" marker-end="url(#arr)"/>
+
+  <!-- Bottom Verification Bar -->
+  <rect x="24" y="364" width="1072" height="84" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="42" y="387" fill="#0f2744" font-size="12.5" font-weight="700">Verified Correlation Example (Part F Investigation — ATLAS\k.amrani Single Failed Interactive Logon)</text>
+  <text x="42" y="408" fill="#334155" font-size="11.5">Windows Security Log: Event ID 4625 (RecordId 2963, 2026-11-26 15:29:03.418Z) + Kerberos 4771 (RecordId 2962, 0x18)  |  LogonType 2  |  0xC000006D / 0xC000006A</text>
+  <text x="42" y="428" fill="#0f766e" font-size="11.5" font-weight="600">Wazuh Alert: ID 1795706937.3504174 (2026-11-26 15:28:57.454Z)  |  Rule 60122 (Level 5)  |  EVTX SHA-256: f636527f...7658efdb0 (Verified Win &amp; Mac)</text>
+</svg>

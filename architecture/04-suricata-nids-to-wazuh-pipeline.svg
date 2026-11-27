@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 430" width="1120" height="430" font-family="Helvetica Neue, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a5f"/>
+    </marker>
+    <marker id="arrTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0f766e"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="430" fill="#ffffff"/>
+  <rect x="20" y="16" width="1080" height="52" rx="8" fill="#0f2744"/>
+  <text x="40" y="41" fill="#ffffff" font-size="18" font-weight="700">Optional Part G — Network IDS Pipeline (IIS 8088 → Npcap 1.90 → Suricata 8.0.8 → Wazuh)</text>
+  <text x="40" y="58" fill="#cbd5e1" font-size="12">Strictly Isolated to 10.10.20.0/24  |  Authorized TCP/HTTP 401 Test Only (No Real Credentials Transmitted)</text>
+
+  <!-- Box 1: Mac Host Client -->
+  <rect x="24" y="96" width="186" height="214" rx="8" fill="#f8fafc" stroke="#1e3a5f" stroke-width="1.8"/>
+  <rect x="24" y="96" width="186" height="28" rx="8" fill="#1e3a5f"/>
+  <rect x="24" y="114" width="186" height="10" fill="#1e3a5f"/>
+  <text x="36" y="115" fill="#ffffff" font-size="11.5" font-weight="700">1. Lab Client (Mac)</text>
+  <text x="36" y="144" fill="#0f172a" font-size="11.5" font-weight="700">10.10.20.1 (bridge102)</text>
+  <text x="36" y="166" fill="#334155" font-size="11">• nc -vz 10.10.20.10 8088</text>
+  <text x="36" y="184" fill="#334155" font-size="11">• curl -i http://10.10.20.10</text>
+  <text x="44" y="200" fill="#334155" font-size="11">:8088/index.html</text>
+  <text x="36" y="226" fill="#b45309" font-size="11" font-weight="600">Response: HTTP 401</text>
+  <text x="36" y="242" fill="#475569" font-size="10.5">WWW-Authenticate: Basic</text>
+  <text x="36" y="266" fill="#64748b" font-size="10">RFC 3168 ECN+CWR SYN</text>
+  <text x="36" y="280" fill="#64748b" font-size="10">(TCP Flags 0xC2)</text>
+
+  <!-- Box 2: ATLAS-SRV Firewall + IIS + Npcap -->
+  <rect x="238" y="96" width="234" height="214" rx="8" fill="#eff6ff" stroke="#1e3a5f" stroke-width="1.8"/>
+  <rect x="238" y="96" width="234" height="28" rx="8" fill="#1e3a5f"/>
+  <rect x="238" y="114" width="234" height="10" fill="#1e3a5f"/>
+  <text x="250" y="115" fill="#ffffff" font-size="11.5" font-weight="700">2. ATLAS-SRV NIC &amp; IIS :8088</text>
+  <text x="250" y="144" fill="#0f172a" font-size="11.5" font-weight="700">Ethernet: 10.10.20.10/24</text>
+  <text x="250" y="162" fill="#334155" font-size="10.5">GUID: {1F0B75A5-...-97D9FE449A85}</text>
+  <text x="250" y="182" fill="#334155" font-size="11">• FW Rule: Allow 10.10.20.1 →</text>
+  <text x="258" y="198" fill="#334155" font-size="11">10.10.20.10 TCP 8088 ONLY</text>
+  <text x="250" y="218" fill="#334155" font-size="11">• IIS Default Web Site (Started)</text>
+  <text x="250" y="236" fill="#334155" font-size="11">• Anonymous OFF / Basic ON</text>
+  <rect x="250" y="250" width="210" height="46" rx="5" fill="#ffffff" stroke="#0f766e"/>
+  <text x="260" y="268" fill="#0f766e" font-size="11" font-weight="700">Npcap 1.90 Driver (Running)</text>
+  <text x="260" y="284" fill="#334155" font-size="10.5">Captures wire frames on Host-Only</text>
+
+  <!-- Box 3: Suricata 8.0.8 -->
+  <rect x="500" y="96" width="238" height="214" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+  <rect x="500" y="96" width="238" height="28" rx="8" fill="#b45309"/>
+  <rect x="500" y="114" width="238" height="10" fill="#b45309"/>
+  <text x="512" y="115" fill="#ffffff" font-size="11.5" font-weight="700">3. Suricata 8.0.8 IDS Engine</text>
+  <text x="512" y="144" fill="#0f172a" font-size="11.5" font-weight="700">HOME_NET: "[10.10.20.0/24]"</text>
+  <text x="512" y="164" fill="#334155" font-size="10.5">• Rule file: C:\Temp\atlas-test.rules</text>
+  <text x="512" y="182" fill="#92400e" font-size="10.5" font-weight="700">• sid:1000001 rev:3 (flags:S,12)</text>
+  <text x="512" y="198" fill="#334155" font-size="10.5">• msg: "ATLAS LAB portal TCP test"</text>
+  <text x="512" y="218" fill="#334155" font-size="11">• suricata -T: Config loaded OK</text>
+  <rect x="512" y="234" width="214" height="62" rx="5" fill="#ffffff" stroke="#d97706"/>
+  <text x="522" y="252" fill="#92400e" font-size="11" font-weight="700">EVE JSON Output (eve.json)</text>
+  <text x="522" y="268" fill="#334155" font-size="10">event_type: "alert" (3 real hits)</text>
+  <text x="522" y="284" fill="#475569" font-size="10">SHA-256: 433a4b21...6116d09e</text>
+
+  <!-- Box 4: Wazuh Agent -> Manager -> Threat Hunting -->
+  <rect x="766" y="96" width="330" height="214" rx="8" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.8"/>
+  <rect x="766" y="96" width="330" height="28" rx="8" fill="#0f766e"/>
+  <rect x="766" y="114" width="330" height="10" fill="#0f766e"/>
+  <text x="778" y="115" fill="#ffffff" font-size="11.5" font-weight="700">4. Wazuh Ingestion &amp; Threat Hunting</text>
+  <text x="778" y="144" fill="#0f172a" font-size="11.5" font-weight="700">ossec.conf JSON Collector (Line 213):</text>
+  <text x="778" y="162" fill="#334155" font-size="10.5">• &lt;log_format&gt;json&lt;/log_format&gt;</text>
+  <text x="778" y="178" fill="#334155" font-size="10.5">• C:\Program Files\Suricata\log\eve.json</text>
+  <text x="778" y="198" fill="#0f766e" font-size="11" font-weight="700">Wazuh Manager (10.10.20.100:1514):</text>
+  <text x="778" y="216" fill="#334155" font-size="11">• Built-in Suricata Decoder + Rule 86601 (lvl 3)</text>
+  <text x="778" y="234" fill="#334155" font-size="11">• Group: ids, suricata</text>
+  <rect x="778" y="248" width="306" height="48" rx="5" fill="#ffffff" stroke="#0f766e"/>
+  <text x="788" y="267" fill="#0f766e" font-size="11.5" font-weight="700">✓ VERIFIED IN THREAT HUNTING (3 Hits)</text>
+  <text x="788" y="284" fill="#134e4a" font-size="10.5">"Suricata: Alert - ATLAS LAB portal TCP test"</text>
+
+  <!-- Arrows -->
+  <path d="M 210 203 L 236 203" stroke="#1e3a5f" stroke-width="2.2" fill="none" marker-end="url(#arr)"/>
+  <path d="M 472 203 L 498 203" stroke="#1e3a5f" stroke-width="2.2" fill="none" marker-end="url(#arr)"/>
+  <path d="M 738 203 L 764 203" stroke="#0f766e" stroke-width="2.2" fill="none" marker-end="url(#arrTeal)"/>
+
+  <!-- Bottom Note -->
+  <rect x="24" y="334" width="1072" height="76" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="42" y="357" fill="#0f2744" font-size="12" font-weight="700">Technical Scope &amp; Analytical Accuracy Boundary (Manual Part G2.8)</text>
+  <text x="42" y="376" fill="#334155" font-size="11.5">• Verified: TCP connectivity (10.10.20.1 → 10.10.20.10:8088), HTTP 401 Basic-auth challenge, local Suricata sid:1000001 alert in eve.json, and Wazuh Rule 86601 receipt (&lt;1.6 s latency).</text>
+  <text x="42" y="395" fill="#475569" font-size="11.5">• Explicitly Distinguished: This signature detects a TCP SYN connection attempt; it is NOT claimed as a port-scan detector or credential exposure alert. Foreground Suricata stopped post-capture.</text>
+</svg>

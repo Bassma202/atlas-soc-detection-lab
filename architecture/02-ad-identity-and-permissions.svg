@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560" width="1120" height="560" font-family="Helvetica Neue, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a5f"/>
+    </marker>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#b91c1c"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#15803d"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="560" fill="#ffffff"/>
+  <rect x="20" y="16" width="1080" height="52" rx="8" fill="#0f2744"/>
+  <text x="40" y="41" fill="#ffffff" font-size="18" font-weight="700">Active Directory Identity Structure, DNS Authority &amp; Least-Privilege SMB Access</text>
+  <text x="40" y="58" fill="#cbd5e1" font-size="12">Forest: atlas.local (Windows2025Forest)  |  NetBIOS: ATLAS  |  Domain Controller: ATLAS-SRV.atlas.local (10.10.20.10)</text>
+
+  <!-- Forest Box -->
+  <rect x="20" y="84" width="1080" height="456" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- DC / DNS Block -->
+  <rect x="44" y="104" width="1032" height="92" rx="8" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.8"/>
+  <rect x="44" y="104" width="1032" height="26" rx="8" fill="#1e3a5f"/>
+  <rect x="44" y="120" width="1032" height="10" fill="#1e3a5f"/>
+  <text x="60" y="122" fill="#ffffff" font-size="12.5" font-weight="700">Domain Controller &amp; Authoritative DNS — ATLAS-SRV.atlas.local</text>
+  <text x="60" y="148" fill="#0f172a" font-size="12" font-weight="600">• Active Directory Domain Services (AD DS) + Global Catalog (GC = True) + Kerberos KDC (TCP/UDP 88)</text>
+  <text x="60" y="167" fill="#0f172a" font-size="12">• DNS Server bound strictly to 10.10.20.10: A-record returns ONLY 10.10.20.10; SRV _ldap._tcp.dc._msdcs.atlas.local → port 389</text>
+  <text x="60" y="185" fill="#0f766e" font-size="11.5" font-weight="600">• Security Auditing: Logon/Logoff, Account Logon (Kerberos 4771), Account Management (4720/4728), Other System Events = Success &amp; Failure</text>
+
+  <!-- Column 1: Accounts -->
+  <rect x="44" y="218" width="320" height="302" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <rect x="44" y="218" width="320" height="28" rx="8" fill="#334155"/>
+  <rect x="44" y="236" width="320" height="10" fill="#334155"/>
+  <text x="60" y="237" fill="#ffffff" font-size="12.5" font-weight="700">Fictional Domain Accounts (Part D9)</text>
+
+  <rect x="60" y="260" width="288" height="40" rx="5" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="72" y="277" fill="#14532d" font-size="12" font-weight="700">k.amrani@atlas.local</text>
+  <text x="72" y="293" fill="#166534" font-size="10.5">Standard Staff • Enabled • Part F2 Test Target</text>
+
+  <rect x="60" y="308" width="288" height="40" rx="5" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="72" y="325" fill="#14532d" font-size="12" font-weight="700">y.benali@atlas.local</text>
+  <text x="72" y="341" fill="#166534" font-size="10.5">Standard Staff • Enabled • PasswordNeverExpires</text>
+
+  <rect x="60" y="356" width="288" height="40" rx="5" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="72" y="373" fill="#14532d" font-size="12" font-weight="700">s.tahiri@atlas.local</text>
+  <text x="72" y="389" fill="#166534" font-size="10.5">Standard Staff • Enabled • PasswordNeverExpires</text>
+
+  <rect x="60" y="408" width="288" height="44" rx="5" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="72" y="425" fill="#92400e" font-size="12" font-weight="700">admin.it@atlas.local</text>
+  <text x="72" y="442" fill="#b45309" font-size="10.5">Privileged IT Administrator (Domain Admins)</text>
+
+  <rect x="60" y="462" width="288" height="44" rx="5" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="72" y="479" fill="#991b1b" font-size="12" font-weight="700">svc_backup@atlas.local</text>
+  <text x="72" y="496" fill="#b91c1c" font-size="10.5">Service Account • Monitored by Custom Rule 100100</text>
+
+  <!-- Column 2: Security Groups -->
+  <rect x="414" y="218" width="275" height="302" rx="8" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.5"/>
+  <rect x="414" y="218" width="275" height="28" rx="8" fill="#1e3a5f"/>
+  <rect x="414" y="236" width="275" height="10" fill="#1e3a5f"/>
+  <text x="430" y="237" fill="#ffffff" font-size="12.5" font-weight="700">Active Directory Security Groups</text>
+
+  <rect x="430" y="278" width="243" height="72" rx="6" fill="#ecfdf5" stroke="#15803d" stroke-width="1.5"/>
+  <text x="442" y="299" fill="#14532d" font-size="13" font-weight="700">ATLAS\AtlasStaff</text>
+  <text x="442" y="317" fill="#166534" font-size="11">Global Security Group</text>
+  <text x="442" y="335" fill="#166534" font-size="11">Members: k.amrani, y.benali, s.tahiri</text>
+
+  <rect x="430" y="370" width="243" height="60" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="442" y="391" fill="#92400e" font-size="13" font-weight="700">ATLAS\Domain Admins</text>
+  <text x="442" y="409" fill="#b45309" font-size="11">Members: Administrator, admin.it</text>
+
+  <rect x="430" y="446" width="243" height="60" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="442" y="467" fill="#1e293b" font-size="13" font-weight="700">ATLAS\Domain Users</text>
+  <text x="442" y="485" fill="#475569" font-size="11">All domain accounts (incl. svc_backup)</text>
+
+  <!-- Column 3: Staff SMB Share + Behavioral Verification -->
+  <rect x="740" y="218" width="336" height="302" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="1.8"/>
+  <rect x="740" y="218" width="336" height="28" rx="8" fill="#0f766e"/>
+  <rect x="740" y="236" width="336" height="10" fill="#0f766e"/>
+  <text x="756" y="237" fill="#ffffff" font-size="12.5" font-weight="700">Protected Resource: \\ATLAS-SRV\Staff</text>
+
+  <text x="756" y="268" fill="#0f172a" font-size="12" font-weight="700">Local Path: C:\AtlasShare\payroll.txt</text>
+  <text x="756" y="286" fill="#475569" font-size="11">Protected by Wazuh Realtime FIM (Rule 550, lvl 7)</text>
+
+  <rect x="756" y="302" width="304" height="82" rx="6" fill="#f0fdf4" stroke="#15803d"/>
+  <text x="768" y="321" fill="#14532d" font-size="12" font-weight="700">AtlasStaff Access (Least Privilege)</text>
+  <text x="768" y="339" fill="#166534" font-size="11">• SMB Share: Allow Change</text>
+  <text x="768" y="355" fill="#166534" font-size="11">• NTFS ACL: (OI)(CI)(M) Modify</text>
+  <text x="768" y="372" fill="#15803d" font-size="11" font-weight="700">✓ Verified (k.amrani): Read + Write ALLOWED</text>
+
+  <rect x="756" y="400" width="304" height="104" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="768" y="419" fill="#991b1b" font-size="12" font-weight="700">Domain Users / svc_backup Access</text>
+  <text x="768" y="437" fill="#7f1d1d" font-size="11">• SMB Share: Allow Read Only</text>
+  <text x="768" y="453" fill="#7f1d1d" font-size="11">• NTFS ACL: (OI)(CI)(RX) Read &amp; Execute</text>
+  <text x="768" y="472" fill="#15803d" font-size="11" font-weight="600">✓ Verified (svc_backup): Read ALLOWED</text>
+  <text x="768" y="490" fill="#b91c1c" font-size="11" font-weight="700">✗ Verified (svc_backup): Write ACCESS DENIED</text>
+
+  <!-- Connecting arrows -->
+  <path d="M 348 280 L 428 308" stroke="#15803d" stroke-width="1.8" fill="none" marker-end="url(#arrGreen)"/>
+  <path d="M 348 328 L 428 314" stroke="#15803d" stroke-width="1.8" fill="none" marker-end="url(#arrGreen)"/>
+  <path d="M 348 376 L 428 322" stroke="#15803d" stroke-width="1.8" fill="none" marker-end="url(#arrGreen)"/>
+  <path d="M 348 430 L 428 400" stroke="#1e3a5f" stroke-width="1.8" fill="none" marker-end="url(#arr)"/>
+  <path d="M 348 484 L 428 476" stroke="#b91c1c" stroke-width="1.8" fill="none" marker-end="url(#arrRed)"/>
+
+  <path d="M 673 314 L 754 340" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrGreen)"/>
+  <path d="M 673 476 L 754 452" stroke="#b91c1c" stroke-width="2" fill="none" marker-end="url(#arrRed)"/>
+</svg>

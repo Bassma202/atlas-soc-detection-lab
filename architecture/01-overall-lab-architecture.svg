@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 660" width="1120" height="660" font-family="Helvetica Neue, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a5f"/>
+    </marker>
+    <marker id="arrDash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1120" height="660" fill="#ffffff"/>
+
+  <!-- Header -->
+  <rect x="20" y="16" width="1080" height="54" rx="8" fill="#0f2744"/>
+  <text x="40" y="42" fill="#ffffff" font-size="18" font-weight="700">Atlas SOC Lab — Implemented Hybrid Architecture &amp; Isolated Network Topology</text>
+  <text x="40" y="60" fill="#cbd5e1" font-size="12">MacBook Air (Apple Silicon M5, 24 GB RAM, macOS 26.4 arm64)  |  UTM 5.0.9-2 (QEMU 10)  |  Private Subnet 10.10.20.0/24</text>
+
+  <!-- Host Container -->
+  <rect x="20" y="84" width="1080" height="556" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="36" y="106" fill="#0f2744" font-size="13" font-weight="700">HOST SYSTEM: MacBook Air M5 (Apple Silicon arm64, 10 Cores, 24 GB Unified RAM, 460 GB SSD)</text>
+
+  <!-- Top Row: Host Bridge + Temp NAT + Preserved Env -->
+  <rect x="40" y="122" width="350" height="96" rx="8" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="40" y="122" width="350" height="26" rx="8" fill="#1e3a5f"/>
+  <rect x="40" y="138" width="350" height="10" fill="#1e3a5f"/>
+  <text x="54" y="140" fill="#ffffff" font-size="12" font-weight="700">Host-Only Bridge — bridge102 (vmnet-host)</text>
+  <text x="54" y="166" fill="#0f172a" font-size="12" font-weight="600">IPv4: 10.10.20.1 / 255.255.255.0 (DHCP .1–.200)</text>
+  <text x="54" y="185" fill="#334155" font-size="11">Role: Admin Browser (Wazuh HTTPS), Verification Client (nc/curl)</text>
+  <text x="54" y="203" fill="#0f766e" font-size="11" font-weight="600">Status: ACTIVE — Strictly isolated from Wi-Fi en0</text>
+
+  <rect x="415" y="122" width="320" height="96" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="1.2" stroke-dasharray="5,4" filter="url(#shadow)"/>
+  <rect x="415" y="122" width="320" height="26" rx="8" fill="#64748b"/>
+  <rect x="415" y="138" width="320" height="10" fill="#64748b"/>
+  <text x="429" y="140" fill="#ffffff" font-size="12" font-weight="700">Temporary NAT — bridge103 (vmnet-shared)</text>
+  <text x="429" y="166" fill="#0f172a" font-size="12" font-weight="600">Gateway/DNS Forwarder: 192.168.64.1 / 24</text>
+  <text x="429" y="185" fill="#334155" font-size="11">Used ONLY for Wazuh install &amp; Win2025 slmgr /ato</text>
+  <text x="429" y="203" fill="#b45309" font-size="11" font-weight="600">Post-Setup: DISABLED on both VMs (Zero Egress)</text>
+
+  <rect x="760" y="122" width="320" height="96" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="760" y="122" width="320" height="26" rx="8" fill="#e2e8f0"/>
+  <rect x="760" y="138" width="320" height="10" fill="#e2e8f0"/>
+  <text x="774" y="140" fill="#334155" font-size="12" font-weight="700">Preserved Host Networks (Untouched)</text>
+  <text x="774" y="166" fill="#334155" font-size="11">• Campus Wi-Fi (en0): 10.12.129.80/16</text>
+  <text x="774" y="184" fill="#334155" font-size="11">• VMware Fusion 13.6.1: vmnet1 / vmnet8</text>
+  <text x="774" y="202" fill="#334155" font-size="11">• Docker Desktop 4.100.1 &amp; existing labs intact</text>
+
+  <!-- Isolated Lab Network Container -->
+  <rect x="40" y="248" width="1040" height="372" rx="10" fill="#eef4fa" stroke="#1e3a5f" stroke-width="2"/>
+  <rect x="40" y="248" width="1040" height="28" rx="10" fill="#1e3a5f"/>
+  <rect x="40" y="266" width="1040" height="10" fill="#1e3a5f"/>
+  <text x="58" y="267" fill="#ffffff" font-size="12.5" font-weight="700">ISOLATED PRIVATE LAB SUBNET — 10.10.20.0/24  (No Internet Egress • Zero External Exposure)</text>
+
+  <!-- WAZUH-ARM VM Card -->
+  <rect x="64" y="300" width="445" height="296" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="64" y="300" width="445" height="38" rx="8" fill="#0f766e"/>
+  <rect x="64" y="328" width="445" height="10" fill="#0f766e"/>
+  <text x="80" y="319" fill="#ffffff" font-size="14" font-weight="700">WAZUH-ARM  (SOC / SIEM Server)</text>
+  <text x="80" y="333" fill="#ccfbf1" font-size="11">Native ARM64 Virtualization (Apple HVF) • 4 vCPU • 8 GB RAM • 50 GB Disk</text>
+
+  <text x="80" y="360" fill="#0f172a" font-size="12" font-weight="700">OS &amp; Platform:</text>
+  <text x="176" y="360" fill="#334155" font-size="12">Ubuntu Server 24.04.5 LTS (ARM64), UTC Clock</text>
+  <text x="80" y="380" fill="#0f172a" font-size="12" font-weight="700">Host-Only NIC:</text>
+  <text x="176" y="380" fill="#0f766e" font-size="12" font-weight="700">eth-atlas = 10.10.20.100/24 (No GW)</text>
+  <text x="80" y="398" fill="#0f172a" font-size="11.5" font-weight="600">MAC Address:</text>
+  <text x="176" y="398" fill="#475569" font-size="11.5">52:54:00:10:20:64  |  eth-nat: DOWN (Removed)</text>
+
+  <line x1="80" y1="412" x2="493" y2="412" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="80" y="431" fill="#0f2744" font-size="12" font-weight="700">Installed Wazuh Stack (Official v4.14.11):</text>
+  <text x="88" y="451" fill="#334155" font-size="11.5">• wazuh-manager (TCP 1514 Events, TCP 1515 Enroll, API 55000)</text>
+  <text x="88" y="469" fill="#334155" font-size="11.5">• wazuh-indexer (OpenSearch HTTPS 9200) &amp; Filebeat</text>
+  <text x="88" y="487" fill="#334155" font-size="11.5">• wazuh-dashboard (HTTPS 443 — https://10.10.20.100)</text>
+  <text x="88" y="505" fill="#334155" font-size="11.5">• Custom Rule 100100 (lvl 10, svc_backup 4625) in local_rules.xml</text>
+
+  <rect x="80" y="520" width="413" height="60" rx="6" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/>
+  <text x="92" y="538" fill="#115e59" font-size="11.5" font-weight="700">Recovery Snapshots &amp; Control:</text>
+  <text x="92" y="555" fill="#134e4a" font-size="11">• QCOW2 Snapshots: Wazuh-clean, Wazuh-agent-connected</text>
+  <text x="92" y="571" fill="#134e4a" font-size="11">• Local QEMU Monitor: 127.0.0.1:4445  |  SSH Key Auth Only</text>
+
+  <!-- ATLAS-SRV VM Card -->
+  <rect x="610" y="300" width="445" height="296" rx="8" fill="#ffffff" stroke="#1e3a5f" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="610" y="300" width="445" height="38" rx="8" fill="#1e3a5f"/>
+  <rect x="610" y="328" width="445" height="10" fill="#1e3a5f"/>
+  <text x="626" y="319" fill="#ffffff" font-size="14" font-weight="700">ATLAS-SRV  (AD Domain Controller &amp; Monitored Host)</text>
+  <text x="626" y="333" fill="#dbeafe" font-size="11">Multi-Threaded x86-64 TCG • 4 vCPU • 4 GB RAM • 60 GB Disk • TPM 2.0</text>
+
+  <text x="626" y="360" fill="#0f172a" font-size="12" font-weight="700">OS &amp; License:</text>
+  <text x="722" y="360" fill="#334155" font-size="12">Win Server 2025 Std Eval (26100.1742) — Licensed 180d</text>
+  <text x="626" y="380" fill="#0f172a" font-size="12" font-weight="700">Host-Only NIC:</text>
+  <text x="722" y="380" fill="#1e3a5f" font-size="12" font-weight="700">Ethernet = 10.10.20.10/24 (DNS 10.10.20.10, No GW)</text>
+  <text x="626" y="398" fill="#0f172a" font-size="11.5" font-weight="600">MAC / GUID:</text>
+  <text x="722" y="398" fill="#475569" font-size="11.5">52-54-00-10-20-0A  |  Ethernet 2 (NAT): DISABLED</text>
+
+  <line x1="626" y1="412" x2="1039" y2="412" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="626" y="431" fill="#0f2744" font-size="12" font-weight="700">Domain, Telemetry &amp; Optional Part G Services:</text>
+  <text x="634" y="451" fill="#334155" font-size="11.5">• AD DS Forest: atlas.local (ATLAS) + Global Catalog + DNS (.10 only)</text>
+  <text x="634" y="469" fill="#334155" font-size="11.5">• Security Auditing (Success &amp; Failure) + Staff SMB Share (C:\AtlasShare)</text>
+  <text x="634" y="487" fill="#334155" font-size="11.5">• Wazuh Agent 001 (v4.14.10) — EventChannel + Realtime FIM + EVE JSON</text>
+  <text x="634" y="505" fill="#334155" font-size="11.5">• Part G: IIS Portal :8088 (Basic Auth, Scoped FW) + Npcap 1.90 + Suricata 8.0.8</text>
+
+  <rect x="626" y="520" width="413" height="60" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="638" y="538" fill="#1e3a8a" font-size="11.5" font-weight="700">Recovery Snapshots &amp; Control:</text>
+  <text x="638" y="555" fill="#1e40af" font-size="11">• Snapshots: domain-DNS-fixed, agent-connected, before-Part-G, PartG-verified</text>
+  <text x="638" y="571" fill="#1e40af" font-size="11">• Local QEMU Monitor: 127.0.0.1:4444  |  WinRM Basic/Unencrypted: OFF</text>
+
+  <!-- Arrows -->
+  <!-- Host bridge102 -> WAZUH-ARM HTTPS 443 -->
+  <path d="M 190 218 L 190 296" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <rect x="78" y="224" width="222" height="19" rx="4" fill="#ffffff" stroke="#0f766e" stroke-width="1"/>
+  <text x="189" y="237" text-anchor="middle" fill="#0f766e" font-size="10.5" font-weight="700">HTTPS :443 (Wazuh Dashboard)</text>
+
+  <!-- Host bridge102 -> ATLAS-SRV HTTP 8088 -->
+  <path d="M 320 218 L 320 236 L 780 236 L 780 296" stroke="#1e3a5f" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <rect x="520" y="224" width="248" height="19" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="644" y="237" text-anchor="middle" fill="#1e3a5f" font-size="10.5" font-weight="700">HTTP :8088 (Scoped FW Allow 10.10.20.1)</text>
+
+  <!-- ATLAS-SRV -> WAZUH-ARM TCP 1515/1514 -->
+  <path d="M 608 426 L 512 426" stroke="#1e3a5f" stroke-width="2.2" fill="none" marker-end="url(#arr)"/>
+  <rect x="515" y="388" width="90" height="32" rx="5" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.2"/>
+  <text x="560" y="402" text-anchor="middle" fill="#0f2744" font-size="10.5" font-weight="700">TCP 1515</text>
+  <text x="560" y="415" text-anchor="middle" fill="#475569" font-size="9.5">Enrollment</text>
+
+  <path d="M 608 476 L 512 476" stroke="#0f766e" stroke-width="2.2" fill="none" marker-end="url(#arr)"/>
+  <rect x="515" y="482" width="90" height="44" rx="5" fill="#ffffff" stroke="#0f766e" stroke-width="1.2"/>
+  <text x="560" y="496" text-anchor="middle" fill="#0f766e" font-size="10.5" font-weight="700">TCP 1514</text>
+  <text x="560" y="509" text-anchor="middle" fill="#475569" font-size="9.5">Events, FIM</text>
+  <text x="560" y="520" text-anchor="middle" fill="#475569" font-size="9.5">&amp; EVE JSON</text>
+</svg>

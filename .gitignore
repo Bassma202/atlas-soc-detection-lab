@@ -1,0 +1,23 @@
+# Never commit credentials, keys, binaries, VM disks, or raw sensitive logs
+*vault*
+*credentials*
+*.pem
+*.key
+*_ed25519*
+*.evtx
+*.iso
+*.img
+*.dmg
+*.msi
+*.exe
+*.qcow2
+*.vdi
+*.vmdk
+*.ova
+*.utm/
+*.pdf
+*.docx
+.DS_Store
+__pycache__/
+*.pyc
+.env
