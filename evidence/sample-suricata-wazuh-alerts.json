@@ -1,0 +1,182 @@
+[
+  {
+    "timestamp": "2026-11-27T01:30:03.606+0000",
+    "rule": {
+      "level": 3,
+      "description": "Suricata: Alert - ATLAS LAB portal TCP test",
+      "id": "86601",
+      "firedtimes": 1,
+      "mail": false,
+      "groups": [
+        "ids",
+        "suricata"
+      ]
+    },
+    "agent": {
+      "id": "001",
+      "name": "ATLAS-SRV",
+      "ip": "10.10.20.10"
+    },
+    "manager": {
+      "name": "wazuh-arm"
+    },
+    "id": "1795743003.1111846",
+    "decoder": {
+      "name": "json"
+    },
+    "data": {
+      "timestamp": "2026-11-27T01:30:02.003682+0000",
+      "flow_id": "578767046409958.000000",
+      "in_iface": "\\Device\\NPF_{1F0B75A5-C580-469C-80AD-97D9FE449A85}",
+      "event_type": "alert",
+      "src_ip": "10.10.20.1",
+      "src_port": "63841",
+      "dest_ip": "10.10.20.10",
+      "dest_port": "8088",
+      "proto": "TCP",
+      "ip_v": "4",
+      "pkt_src": "wire/pcap",
+      "alert": {
+        "action": "allowed",
+        "gid": "1",
+        "signature_id": "1000001",
+        "rev": "3",
+        "signature": "ATLAS LAB portal TCP test",
+        "severity": "3"
+      },
+      "direction": "to_server",
+      "flow": {
+        "pkts_toserver": "1",
+        "pkts_toclient": "0",
+        "bytes_toserver": "78",
+        "bytes_toclient": "0",
+        "start": "2026-11-27T01:30:02.003682+0000",
+        "src_ip": "10.10.20.1",
+        "dest_ip": "10.10.20.10",
+        "src_port": "63841",
+        "dest_port": "8088"
+      }
+    },
+    "location": "C:\\Program Files\\Suricata\\log\\eve.json"
+  },
+  {
+    "timestamp": "2026-11-27T01:30:03.615+0000",
+    "rule": {
+      "level": 3,
+      "description": "Suricata: Alert - ATLAS LAB portal TCP test",
+      "id": "86601",
+      "firedtimes": 2,
+      "mail": false,
+      "groups": [
+        "ids",
+        "suricata"
+      ]
+    },
+    "agent": {
+      "id": "001",
+      "name": "ATLAS-SRV",
+      "ip": "10.10.20.10"
+    },
+    "manager": {
+      "name": "wazuh-arm"
+    },
+    "id": "1795743003.1113340",
+    "decoder": {
+      "name": "json"
+    },
+    "data": {
+      "timestamp": "2026-11-27T01:30:01.981550+0000",
+      "flow_id": "556554566555343.000000",
+      "in_iface": "\\Device\\NPF_{1F0B75A5-C580-469C-80AD-97D9FE449A85}",
+      "event_type": "alert",
+      "src_ip": "10.10.20.1",
+      "src_port": "63840",
+      "dest_ip": "10.10.20.10",
+      "dest_port": "8088",
+      "proto": "TCP",
+      "ip_v": "4",
+      "pkt_src": "wire/pcap",
+      "alert": {
+        "action": "allowed",
+        "gid": "1",
+        "signature_id": "1000001",
+        "rev": "3",
+        "signature": "ATLAS LAB portal TCP test",
+        "severity": "3"
+      },
+      "direction": "to_server",
+      "flow": {
+        "pkts_toserver": "1",
+        "pkts_toclient": "0",
+        "bytes_toserver": "78",
+        "bytes_toclient": "0",
+        "start": "2026-11-27T01:30:01.981550+0000",
+        "src_ip": "10.10.20.1",
+        "dest_ip": "10.10.20.10",
+        "src_port": "63840",
+        "dest_port": "8088"
+      }
+    },
+    "location": "C:\\Program Files\\Suricata\\log\\eve.json"
+  },
+  {
+    "timestamp": "2026-11-27T01:30:03.615+0000",
+    "rule": {
+      "level": 3,
+      "description": "Suricata: Alert - ATLAS LAB portal TCP test",
+      "id": "86601",
+      "firedtimes": 3,
+      "mail": false,
+      "groups": [
+        "ids",
+        "suricata"
+      ]
+    },
+    "agent": {
+      "id": "001",
+      "name": "ATLAS-SRV",
+      "ip": "10.10.20.10"
+    },
+    "manager": {
+      "name": "wazuh-arm"
+    },
+    "id": "1795743003.1114834",
+    "decoder": {
+      "name": "json"
+    },
+    "data": {
+      "timestamp": "2026-11-27T01:30:04.043152+0000",
+      "flow_id": "1311238695652036.000000",
+      "in_iface": "\\Device\\NPF_{1F0B75A5-C580-469C-80AD-97D9FE449A85}",
+      "event_type": "alert",
+      "src_ip": "10.10.20.1",
+      "src_port": "63842",
+      "dest_ip": "10.10.20.10",
+      "dest_port": "8088",
+      "proto": "TCP",
+      "ip_v": "4",
+      "pkt_src": "wire/pcap",
+      "alert": {
+        "action": "allowed",
+        "gid": "1",
+        "signature_id": "1000001",
+        "rev": "3",
+        "signature": "ATLAS LAB portal TCP test",
+        "severity": "3"
+      },
+      "direction": "to_server",
+      "flow": {
+        "pkts_toserver": "1",
+        "pkts_toclient": "0",
+        "bytes_toserver": "78",
+        "bytes_toclient": "0",
+        "start": "2026-11-27T01:30:04.043152+0000",
+        "src_ip": "10.10.20.1",
+        "dest_ip": "10.10.20.10",
+        "src_port": "63842",
+        "dest_port": "8088"
+      }
+    },
+    "location": "C:\\Program Files\\Suricata\\log\\eve.json"
+  }
+]
